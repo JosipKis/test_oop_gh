@@ -1,6 +1,6 @@
-import java.util.Comparator;
 
-public class Robot implements Comparator<Robot> {
+
+public class Robot implements Comparable<Robot> {
 
     private String name;
     private int id;
@@ -16,15 +16,9 @@ public class Robot implements Comparator<Robot> {
     public String getName(){
         return this.name;
     }
-    @Override
-    public int compare(Robot t1, Robot t2) {
-        if (t1.getName().length() > t2.getName().length()){
-            return 1;
-        }else if(t1.getName().length() < t2.getName().length()){
-            return -1;
-        }else{
-            return 0;
-        }
+
+    public void setName(){
+        this.name = name;
     }
 
     private String generateName(){
@@ -39,9 +33,17 @@ public class Robot implements Comparator<Robot> {
 
     @Override
     public String toString() {
-        return "Robot{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                '}';
+        return "name=" + name;
+    }
+
+    @Override
+    public int compareTo(Robot o2) {
+        if (this.getName().length() > o2.getName().length()){
+            return 1;
+        }else if(this.getName().length() < o2.getName().length()){
+            return -1;
+        }else{
+            return 0;
+        }
     }
 }
