@@ -1,1 +1,1 @@
-# test_oop_gh
+# samo fileovi sa oop koje smo pushali na predavanjima
