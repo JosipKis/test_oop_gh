@@ -8,17 +8,31 @@ public class Robot implements Comparable<Robot> {
     private static final int MINL = 3;
     private static final int MAXL = 15;
     private static final String alph = "abcdefghijklmnoprstuvzxywABCDEFGHIJKLMNOPRSTUVZXYW0123456789";
+    private double batteryLevel;
+    private boolean status;
     public Robot(){
         this.name = generateName();
         this.id = cntID++;
+        this.batteryLevel = 100;
+        this.status = false;
     }
-
+    public void discharge(){
+        this.batteryLevel = Math.random() * this.batteryLevel;
+    }
     public String getName(){
         return this.name;
     }
 
     public void setName(){
         this.name = name;
+    }
+
+    public double getBatteryLevel(){
+        return batteryLevel;
+    }
+
+    public void setStatus(boolean status){
+        this.status = status;
     }
 
     private String generateName(){
@@ -33,7 +47,13 @@ public class Robot implements Comparable<Robot> {
 
     @Override
     public String toString() {
-        return "name=" + name;
+        String rep = "";
+        if (status){
+            rep = String.format("%-15s", batteryLevel);
+        }else{
+            rep = String.format("%-15s", name);
+        }
+        return rep;
     }
 
     @Override

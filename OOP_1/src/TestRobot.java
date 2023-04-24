@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class TestRobot {
     public static void main(String[] args) {
@@ -22,6 +23,10 @@ public class TestRobot {
         Collections.reverse(robots);
         System.out.println("List in reverse order: ");
         System.out.println(robots);
+        changeStatus(robots);
+        Collections.sort(robots, new RobotBatteryComparator());
+        System.out.println(robots);
+
     }
 
     private static ArrayList<Robot> generateLisOfRobots(int numRobots){
@@ -30,5 +35,25 @@ public class TestRobot {
             robots.add(new Robot());
         }
         return robots;
+    }
+
+    private static void changeStatus(ArrayList<Robot> robots){
+        for(Robot robi: robots) {
+            robi.setStatus(true);
+            robi.discharge();
+        }
+    }
+
+    static class RobotBatteryComparator implements Comparator<Robot>{
+        @Override
+        public int compare(Robot ro1, Robot ro2) {
+            if (ro1.getBatteryLevel() > ro2.getBatteryLevel()){
+                return 1;
+            }else if (ro1.getBatteryLevel() < ro2.getBatteryLevel()){
+                return -1;
+            }else{
+                return 0;
+            }
+        }
     }
 }
