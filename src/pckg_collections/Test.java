@@ -14,7 +14,7 @@ public class Test {
         System.out.println(lst);
         HashSet<String> set1 = new HashSet<>(lst);
         System.out.println(set1);
-        for (String element: set1){
+        for (Object element: set1){
             System.out.println(element);
         }
     }
